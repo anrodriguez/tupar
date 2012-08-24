@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Visualización e Interfaces</title>
+
+</head>
+
+<canvas id="canvas" width="200" height="200" style="border:#007700 solid 3px;">
+<p>Su navegador no soporta HTML5</p>
+</canvas>
+
+<br/>
+Imágen: <input type="text" name="imagenText" />
+<button type="button" onclick="examinar()">Examinar</button>
+
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    var imagen = new Image();
+    imagen.src = 'http://www.w3schools.com/images/w3schools_green.jpg';
+
+imagen.onload = function() {
+	alert('onload');
+	ctx.drawImage(this, 0, 0);
+}
+
+
+//--------------------------------------------------------------	
+function setPixel(imageData, x, y, r, g, b, a) 
+{ index = (x + y * imageData.width) * 4;
+  imageData.data[index+0] = r;
+  imageData.data[index+1] = g;
+  imageData.data[index+2] = b;
+  imageData.data[index+3] = a;
+}
+ 
+function doGradient(imageData, width, heigth, xpos, ypos){
+	// create a new pixel array
+    // var imageData = ctx.createImageData(width, height);
+
+    // draw random dots
+    for (x = 0; x < width; x++) 
+	for (y = 0; y < height; y++) {
+	if (x<=width/2) {
+		r = x/(width/2)*255;
+    		g = x/(width/2)*255;
+    		b = 0;
+	} else {
+		r = 255;
+    		g = (width - x) / (width/2) * 255;
+    		b = 0;
+	}
+    	setPixel(imageData, x, y, r, g, b, 255); // 255 opaque
+   	}
+
+// copy the image data back onto the canvas
+	ctx.putImageData(imageData, xpos, ypos); // at coords 0,0
+
+}
+
+</script>
