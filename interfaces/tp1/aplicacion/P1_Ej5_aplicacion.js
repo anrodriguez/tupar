@@ -128,7 +128,7 @@ function maxValue(arr) {
 
 //-----------------------------------------------------------------------------
 function eExaminar() {
-    src.value = './imagenes/'+document.getElementById("examinarBoton").value;
+    src.value = './imagenes/'+document.getElementById("examinarBoton").value.replace(/^C:\\fakepath\\/i, '');
     eCargarImagen();
 }
 
