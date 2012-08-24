@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+
+</head>
+
+<body onmousemove="pintar(event)" style="margin:0;padding:0;">
+<canvas id="canvas" width="900" height="600" style="border:#007700 solid 3px;">
+<p>Su navegador no soporta HTML5</p>
+</canvas>
+
+<button type="button" onclick="doGradient(imageData, width, height, posx, posy)">Click Me!</button>
+
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+	
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect (0, 0, 900, 600);
+    	var posx = 300;
+    	var posy = 300;
+		
+	var width = 90
+	var height = 60
+	for (i=1; i<30; i++) {
+		var imageData = ctx.createImageData(width, height);
+		doGradient(imageData, width, height, Math.random()*100, Math.random()*100);	
+	}
+
+
+//--------------------------------------------------------------	
+function setPixel(imageData, x, y, r, g, b, a) 
+{ index = (x + y * imageData.width) * 4;
+  imageData.data[index+0] = r;
+  imageData.data[index+1] = g;
+  imageData.data[index+2] = b;
+  imageData.data[index+3] = a;
+}
+ 
+function doGradient(imageData, width, heigth, xpos, ypos){
+	// create a new pixel array
+    // var imageData = ctx.createImageData(width, height);
+
+    // draw random dots
+    for (x = 0; x < width; x++) 
+	for (y = 0; y < height; y++) {
+	if (x<=width/2) {
+		r = x/(width/2)*255;
+    		g = x/(width/2)*255;
+    		b = 0;
+	} else {
+		r = 255;
+    		g = (width - x) / (width/2) * 255;
+    		b = 0;
+	}
+    	setPixel(imageData, x, y, r, g, b, 255); // 255 opaque
+   	}
+
+// copy the image data back onto the canvas
+	ctx.putImageData(imageData, xpos, ypos); // at coords 0,0
+
+}
+
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />    
+<title>Tp1-Ej5. Visualizacion e interfaces</title>
+</head>    
+    
+<canvas id="canvas" width="200" height="200" style="border:#007700 solid 3px;">
+<p>Su navegador no soporta HTML5</p>
+</canvas>
+
+<p>
+    Imágen: <input type="text" size="100" id="imagenSrc" name="imagenInputText" value="http://www.w3schools.com/images/w3schools_green.jpg"/>
+<button type="button" onclick="examinar()">Examinar</button>
+
+</p>
+
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var imagen = new Image();
+    var src = document.getElementById('imagenSrc');
+    imagen.src = src.value;
+
+    imagen.onload = function() {
+	ctx.drawImage(this, 0, 0);
+}
+
+</script>
