@@ -1,0 +1,13 @@
+.containner{
+	width: 900px; 
+    left: 100px;
+    top: 100px;
+    position: relative;
+}
+
+.canvas{
+	width: 900px;
+    height: 600px;
+    border: green solid 1px;
+    position: relative;
+}
