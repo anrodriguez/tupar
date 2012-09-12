@@ -14,7 +14,6 @@ Shape.prototype.isSelected = function() {
 }
 
 Shape.prototype.moveTo = function(x, y) {
-
     this.x = x;
     this.y = y;
 }
