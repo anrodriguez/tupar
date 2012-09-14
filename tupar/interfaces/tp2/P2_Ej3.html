@@ -7,31 +7,42 @@
 </head>
 
 <body style="margin:0;padding:0;" onload="init();">
-<canvas id="canvas" class="leftPanel">
-<p>Su navegador no soporta HTML5</p>
-</canvas>
+<div class="containner">    
+    <canvas id="canvas" width="900" height="600" style="border:green solid 1px">
+    <p>Su navegador no soporta HTML5</p>
+    </canvas>
+</div>  
 
 <script type="text/javascript">  
 var canvas;
 var ctx;
-var box, x1=0, y1=0;
+var box, x=10, y=10, w=100, h=100;
 
-var circle, x2=0, y2=20, r2=15;
+var circle, x2=100, y2=100, r2=10;
 
 function init() {
     canvas  = document.getElementById("canvas");
     ctx     = canvas.getContext("2d");
+    
+    canvas.onmousedown  = mousedown;
+    canvas.onmouseup    = mouseup;
+    canvas.onmousemove  = mousemove;
+    
     figuras = new Figuras();
     var img = new Image();
 
     var c   = rgb(Math.round(Math.random()*255), Math.round(Math.random()*255), Math.round(Math.random()*255));
+    var c2   = rgb(Math.round(Math.random()*255), Math.round(Math.random()*255), Math.round(Math.random()*255));
     img.src = './canvas.jpg';
-    var c1  = ctx.createPattern(img, 'repeat-x');
+    var c1  = ctx.createPattern(img, 'repeat');
 
-    box     = new Box(x1, y1, 10, 10, c);
-    circle  = new Circle(x2, y2, r2, c1);
+    figuras.agregar(new Box(x, y, w, h, c));
+    figuras.agregar(new Box(100, 100, 20, 20, c2));
+    figuras.agregar(new Circle(x2, y2, 10, c1));
     
-    return setInterval(draw, 100);
+    draw();
+    
+    return; 
 }
 //-------------------------------------------------------------
 
@@ -42,15 +53,23 @@ function Box(x, y, w, h, f) {
     this.w = w;
     this.h = h;
     this.fill = f;
+    
+    this.select = false;
 }
 
 Box.prototype.draw = function(ctx) {
-    ctx.beginPath();
-    ctx.fillStyle = this.fill;
-    ctx.fillRect(this.x, this.y, this.w, this.h);
-    ctx.closePath();
+//    ctx.beginPath();
+//    ctx.fillStyle = this.fill;
+//    ctx.fillRect(this.x, this.y, this.w, this.h);
+//    ctx.closePath();
 //    ctx.stroke();    
-    ctx.fill();
+    if (this.isSelect())
+        ctx.fillStyle = "red";
+    else
+        ctx.fillStyle = this.fill;
+        
+    ctx.fillRect(this.x, this.y, this.w, this.h);
+    //    ctx.fill();
 }
 
 Box.prototype.clear = function() {
@@ -58,10 +77,22 @@ Box.prototype.clear = function() {
 }
 
 Box.prototype.moverA = function(x, y) {
+ 
     this.clear();
     this.x = x;
     this.y = y;
     this.draw(ctx);
+}
+
+Box.prototype.isSelect = function() {
+    return this.select;
+}
+
+Box.prototype.isInside = function(x, y) {    
+    if ((x>=this.x&&x<=this.x+this.w)&&(y>=this.y&&y<=this.y+this.h))
+        return true;
+    else
+        return false;
 }
 
 function Circle(x, y, r, f){
@@ -69,16 +100,12 @@ function Circle(x, y, r, f){
     this.y      = y;
     this.radio  = r;
     this.fill   = f;
+
+    this.select = false;
+
 }
 
 Circle.prototype.clear = function() {
-    /*ctx.beginPath();
-    ctx.fillStyle = '#FFFFFF';
-    ctx.strokeStyle = '#FFFFFF';
-    ctx.arc(this.x, this.y, this.radio, 0, 2*Math.PI, true);
-    ctx.closePath();
-    ctx.stroke();    
-    ctx.fill();*/
 }
 
 Circle.prototype.moverA = function(x, y) {
@@ -97,8 +124,23 @@ Circle.prototype.draw = function(ctx) {
     ctx.fill();
 }
 
+Circle.prototype.isSelect = function() {
+    return this.select;
+}
+
+Circle.prototype.isInside = function(x, y) {    
+    var distancia = Math.sqrt(Math.pow(x-this.x,2) + Math.pow(y-this.y,2));
+
+    if (distancia<=this.radio)
+        return true;
+    else
+        return false;
+}
+
+
 function Figuras(){
     this.shapes = [];
+    this.actual = -1;
 }
 
 Figuras.prototype.agregar = function(figura) {
@@ -109,6 +151,24 @@ Figuras.prototype.draw = function(ctx) {
     for (var i=0; i<this.shapes.length; i++) {
         this.shapes[i].draw(ctx);
     }
+}
+
+Figuras.prototype.isInside = function(x, y) {
+    
+    for (var i=0; i<this.shapes.length; i++) {
+        if (this.shapes[i].isInside(x, y)) {
+            this.shapes[i].select = true;   
+            this.actual = i;
+            }
+        else {
+            this.shapes[i].select = false;
+            }
+    }
+}
+
+Figuras.prototype.moverA = function(x, y) {
+    if (this.actual>=0&&this.actual<=this.shapes.length)
+        this.shapes[this.actual].moverA(x, y);
 }
 
 function clear() {
@@ -168,35 +228,29 @@ function patron(x, y, w, h) {
     return patron;
 }
 
+
+function mousedown(e) {
+    figuras.isInside(e.layerX, e.layerY);
+    draw();   
+}
+
+function mouseup(e) {
+    figuras.shapes[figuras.actual].select = false;
+    figuras.actual = -1;
+    draw();
+}
+
+function mousemove(e){
+    figuras.moverA(e.layerX, e.layerY);
+    draw();       
+}
+
 function draw(){
-
     clear();
-    
-    x1+=10;
-    if(x1>canvas.width) {
-        x1=0;
-        y1+=10;
-    }
-    if (y1>canvas.height) {
-        y1=0;
-        x1=0;
-    }
-
-    x2+=3;
-    if(x2+circle.radio>canvas.width) {
-        x2=0;
-        y2+=10;
-    }
-    if (y2>canvas.height) {
-        y2=0;
-        x2=0;
-    }
-
-    box.moverA(x1, y1);
-    circle.moverA(x2, y2);
+    figuras.draw(ctx);   
 
 }
 
 </script>
-
-    
+</body>
+</html>

@@ -1,0 +1,29 @@
+.container{
+    text-align: center;
+    position: relative;
+}
+
+.html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.parametros {
+    left: 10px;
+    top: 100px;
+    position: fixed;
+}
+
+.cargarImagenes{
+    left: 10px;
+    top: 200px;
+    position: fixed;    
+    width: 15px;
+        
+}
+
+.origen {
+    height: 60px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+}
