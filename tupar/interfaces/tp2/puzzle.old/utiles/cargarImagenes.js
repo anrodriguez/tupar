@@ -1,27 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="tp2.puzzle" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="./tp2.puzzle.css" type="text/css"/>
-        <!--script type="text/javascript" src="./P1_Ej5_aplicacion.js"></script-->
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />    
-        <title>Tp2-Puzzle. Visualizacion e interfaces</title>
-    </head>
-
-<div>
-    <canvas class="puzzle" id="puzzle">Su navegador no soporta HTML5...</canvas>
-</div>
-
-<div>
-    <output id="list"></output>
-    <p></p>
-    <input type="file" id="archivo" name="files[]" multiple/>
-</div>
-    
-    
-<script type="text/javascript">
   function handleFileSelect(evt) {
- 
     var files = evt.target.files; 
     for(var i=0, f ;f=files[i]; i++) {
         if (!f.type.match('image.*'))
@@ -45,21 +22,13 @@
     }
 }
 
-// ---- Main----------------------
-  var puzzle = document.getElementById("puzzle");
-  var ctx    = puzzle.getContext("2d");
-  var img    = new Image();
-  img.src    = '001.png';
-
-img.onload = function() {
-    ctx.drawImage(this, 0, 0, puzzle.width, puzzle.height);
-}
-
 document.getElementById('archivo').addEventListener('change', handleFileSelect, false);
 
 function selectImagen(id) {
-    img.src = document.getElementById(id).src;    
-  }
+    clear();
+    img.src = document.getElementById(id).src;
+    puzzle.init();
+    puzzle.setImagen(img);     
 
-</script>
-</html>
+    
+  }

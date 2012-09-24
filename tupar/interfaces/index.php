@@ -14,3 +14,7 @@ echo '<hr>'
 <br>
 <a href="tp2">Trabajo Pr&aacute;ctico 2</a><br>
 <br>
+<a href="tp3">Trabajo Pr&aacute;ctico 3</a><br>
+<br>
+<br>
+<a href="proyectos">Proyectos</a><br>

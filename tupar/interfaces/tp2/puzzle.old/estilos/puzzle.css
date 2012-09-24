@@ -1,0 +1,55 @@
+/*.container{
+    top: 50px;
+    text-align: center;
+    position: relative;
+}
+
+
+
+.html, body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.cargarImagenes{
+    left: 5px;
+    top: 10px;
+    position: float; 
+}
+*/
+.container{
+    width: 900px;
+}
+
+.header {
+    color: windowtext;
+    font-style: italic;
+    font-size: 8px;
+}
+
+.controles {
+    float: left; 
+}
+
+.controles h1 {
+    font-size: 10px;
+}
+
+.paramertos {
+    float: left; 
+}
+
+.origen {
+    width: 80px;
+    height: 60px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+}
+
+.canvasMod     {
+    width: 160px;
+    height: 120px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+}
