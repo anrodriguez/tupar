@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="css/filtros.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>TP4-Visualizaci&oacute;n e Interfaces</title>
+</head>
+
+<body class="body">
+    <h1>Filtros</h1>
+
+    <div class="section">
+        <h2>Imagen Original</h2>
+        <img class="imgOriginal" src="./img/pulpit.jpg" alt="image1"/>
+    </div>
+
+
+    <div class="section">
+        <h2>Imagen Modificada</h2>
+        <img class="original" id="imgModificada" src="./img/pulpit.jpg" alt="image1"/>
+    </div>
+    
+    <div class="botones">
+        <button class="boton" id="original" onclick="setOriginal();">Original</button>
+        <button class="boton" id="blur" onclick="setBlur();">Blur</button>
+        <button class="boton" id="gris" onclick="setGris();">Gris</button>
+        <button class="boton" id="sepia" onclick="setSepia();">Sepia</button>
+        <button class="boton" id="brillo" onclick="setBrillo();">Brillo</button>
+        <button class="boton" id="flip" onclick="setFlip();">Espejo</button>
+        <button class="boton" id="sombra" onclick="setSombra();">Sombra</button>
+    </div>
+
+    <div class="section1">
+        
+    </div>
+</body>
+</html>
+
+<script type="text/javascript" src="./js/filtros.js"></script>

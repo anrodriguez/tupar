@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<script language="javascript">
+function digitos() {
+    var nro = document.getElementById("retvalA").value.toString();
+  
+  for (i=0; i<nro.length;i++) {
+        var d = nro.substring(i,i+1);
+        alert(d);
+    }
+}
+
+</script>
+</HEAD>
+  <body>
+  <form name="f1">
+   <P><INPUT type="text" id="retvalA" value="12345"> </P>
+   
+   <P><BUTTON type="button" onclick="digitos()">
+       Probar</BUTTON>
+   </P>
+
+   </form>
+  </body>
+</HTML>

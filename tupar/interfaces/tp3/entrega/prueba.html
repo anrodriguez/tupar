@@ -1,0 +1,38 @@
+<script language="javascript" type="text/javascript">
+    var RequestObject = false;
+    var Archivo = 'setSensores.php';
+
+    window.setInterval("actualizacion_reloj()", 2000);
+
+    if (window.XMLHttpRequest) RequestObject = new XMLHttpRequest();
+    if (window.ActiveXObject) RequestObject = new ActiveXObject("Microsoft.XMLHTTP");
+
+    function ReqChange() { 
+        
+        if(this.RequestObject.readyState == 4 && this.RequestObject.status == 200)
+            {
+                alert(this.RequestObject.responseText);
+            }
+
+        if (RequestObject.readyState==4) {
+            if (RequestObject.responseText.indexOf('invalid') == -1) {
+                alert(RequestObject.responseText);
+            } else { 
+            }
+        } 
+    }
+
+    function llamadaAjax() {
+        document.getElementById("online").innerHTML = ""; 
+        RequestObject.open("GET", Archivo , true);
+        RequestObject.onreadystatechange = ReqChange; 
+        RequestObject.send(null);
+    }
+
+    function actualizacion_reloj() {
+        llamadaAjax();
+    }
+</script>
+<h2>
+    Usuarios Online</h2>
+<div id="online"></div>

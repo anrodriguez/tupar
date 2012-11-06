@@ -1,0 +1,62 @@
+/* 
+    Document   : estilo
+    Created on : 24-oct-2012, 14:14:22
+    Author     : Alberto N. Rodriguez <anrodriguez.click@gmail.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body { 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FCF9F9), color-stop(100%, #FC9999));
+    background: -moz-linear-gradient(top, #D8D8D8 0%, #FFFFFF 100%);
+}
+
+.body h1 {
+    color: blue;
+    font-family: cursive;
+    font-size: 22px;
+    text-align: center;
+}
+
+.body h2 {
+    color: blue;
+    font-family: sans-serif;
+    font-size: 18px;
+    text-align: left;    
+}
+
+section1 {
+    text-align: justify;
+    text-wrap: normal;
+}
+
+.section1 p {
+    -moz-column-count: 4;
+    -webkit-column-count: 6;
+
+    -moz-column-gap: 50px;
+    -webkit-column-gap: 50px;
+
+    padding-left: 10px;
+
+}
+
+.section2 p {
+    padding: 10px;
+    text-align: justify;
+    text-wrap: normal;
+
+}
+
+.section2 p {
+    -moz-column-count: 4;
+    -webkit-column-count: 6;
+}
+
+.image1 {
+    width: 404px;
+    height: 228px;
+    border-style: solid;
+    border-width: 5px;
+    float: right;
+}

@@ -1,1 +1,11 @@
+<<<<<<< HEAD
 /poo/nbproject/private/
+=======
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+>>>>>>> b2b44aea28b32ef3e3b8273f3bf89698b8cb2fb9
+/bolsaLaboral/nbproject/private/

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/index.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Visualizaci&oacute;n e Interfaces - Galeria de Im&aacute;genes</title>
+</head>
+
+    <body class="body" onload="init()">
+    
+    <div class="cabecera">
+        <p>Visualizaci&oacute;n e Interfaces - Galer&iacute;a de im&aacute;genes - Alberto N. Rodr&iacute;guez</p>
+    </div>
+    
+    <div class="principal">
+        <canvas id="canvas" class="canvas">
+            <p>Su navegador no soporta HTML5</p>
+        </canvas>
+    </div>
+        
+    <div class="botones">
+        <button class="boton" id="original" onclick="setOriginal();">Original</button>
+        <button class="boton" id="blur" onclick="setBlur();">Blur</button>
+        <button class="boton" id="gris" onclick="setGris();">Gris</button>
+        <button class="boton" id="sepia" onclick="setSepia();">Sepia</button>
+        <button class="boton" id="brillo" onclick="setBrillo();">Brillo</button>
+        <button class="boton" id="flip" onclick="setFlip();">Espejo</button>
+    </div>
+
+    <div class="panelControl">
+        Cargar imagenes
+        <input id="archivo" class="boton" type="file" multiple name="files[]" dir="./img">
+    </div>
+
+    <div class="indice">
+        <output id="list"></output>
+    </div>
+
+</body>
+</html>
+
+<script type="text/javascript" src="./js/cargarImagenes.js"></script>
+<script type="text/javascript" src="./js/filtros.js"></script>
+
+<script type="text/javascript" src="./js/main.js"></script>

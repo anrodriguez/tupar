@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <link href="./estilos/tpractico3.css" rel="stylesheet" type="text/css">
+        <title>Visualizaci&oacute;n</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body onload="init()">
+        <div class="contenedor">
+
+            <div class="cabecera">
+                <img class="logo" src="./imagenes/logo.jpg">
+                    <h1>Visualizaci&oacute;n e interfaces</h1>
+                <h2>Trabajo Pr&aacute;ctico 3</h2>                    
+                <ul class="menuhorizontal">
+                    <li><a href="http://localhost/proyectos/anrodriguez/tupar/interfaces/tp3/entrega/">Inicio</a></li>
+                    <li><a href="http://localhost/proyectos/anrodriguez/tupar/interfaces/tp3/entrega/">Empresa</a></li>
+                    <li><a href="http://localhost/proyectos/anrodriguez/tupar/interfaces/tp3/entrega/">Contacto</a></li>
+                    <li><a href="http://localhost/proyectos/anrodriguez/tupar/interfaces/tp3/entrega/">Ingresar</a></li>
+                </ul>
+            </div>
+
+            <div class="panelizquierdo">
+                <h1>Indice</h1>
+                    <li><a href="http://localhost/proyectos/anrodriguez/tupar/interfaces/tp3/entrega/">Inicio</a></li>
+                    <li><a href="http://localhost/proyectos/anrodriguez/tupar/interfaces/tp3/entrega/">Empresa</a></li>
+                    <li><a href="http://localhost/proyectos/anrodriguez/tupar/interfaces/tp3/entrega/">Contacto</a></li>
+                    <li><a href="http://localhost/proyectos/anrodriguez/tupar/interfaces/tp3/entrega/">Ingresar</a></li>
+            </div>
+
+            <div class="panelderecho">
+            	<h1>Widgets</h1>
+                <div>
+                    <canvas id="wreloj" width="100" height="100">
+                        <p>Su navegador no soporta HTML5</p>
+                    </canvas>
+                </div>  
+              
+                <div>
+                    <canvas id="wmonster" width="100" height="100">
+                        <p>Su navegador no soporta HTML5</p>
+                    </canvas>
+                </div>  
+
+                <div>
+                    <canvas id="wclima" width="200" height="100">
+                        <p>Su navegador no soporta HTML5</p>
+                    </canvas>
+                </div>  
+
+                <div>
+                    <canvas id="wanimacion" width="200" height="70">
+                        <p>Su navegador no soporta HTML5</p>
+                    </canvas>
+                </div>  
+
+                <div>
+                    <canvas id="wsensores" width="200" height="100">
+                        <p>Su navegador no soporta HTML5</p>
+                    </canvas>
+                </div>  
+
+            </div>
+
+            <div class="contenido">  
+                <br></br><p>Reloj: Para configurar el reloj presionar click sobre ese widget</p><br></br>
+                <p>Monster: Camina en la direcci&oacute;n indicada por la posici&oacute;n del mouse</p><br></br>
+                <p>Clima: Set Estado                           
+                    <select id="estadoClima" title="Estado del clima" name="estadoClima" onchange="clima.setEstado(this.value)">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                    </select>
+                </p>     
+
+                <br></br><p>Animaci&oacute;n: Muestra una animaci&oacute;n en un canvas dado.
+                </p><br></br>
+
+                <br></br><p>serverStatus: Muestra el porcentaje de carga y el uso de memoria del servidor.<br></br>
+                    Para configurar los sensores presionar click sobre ese widget.<br></br> 
+                    Los sensores indican el porcentaje de carga en los ultimos 1, 5, 15 minutos y 
+                    el porcentaje de uso de memoria. Se actualizan cada 3 segundos.
+                </p><br></br>
+            </div>    
+
+            <div class="piepagina">
+                <p>Alberto N. Rodriguez - 2012</p>
+            </div>
+        
+        </div>        
+    </body>
+</html>
+
+<script type="text/javascript">
+    function init() {
+        
+        reloj   = new Reloj("wreloj");
+        
+        monster = new Monster("wmonster");
+        clima   = new Clima("wclima");
+        clima.setEstado(document.getElementById("estadoClima").value);
+        animacion = new Animacion("wanimacion", './imagenes/monster.png', 1000/10, 10, 0, 1, 0);
+        serverStatus = new ServerStatus("wsensores");
+        
+    }
+</script>
+
+<script type="text/javascript" src="../../clases/List.js"></script>
+<script type="text/javascript" src="../../clases/Shape.js"></script>
+<script type="text/javascript" src="../../clases/Box.js"></script>
+<script type="text/javascript" src="../../clases/Circle.js"></script>
+<script type="text/javascript" src="../../utils/rgb.js"></script>
+
+<script type="text/javascript" src="./Reloj.js"></script>
+<script type="text/javascript" src="./Monster.js"></script>
+<script type="text/javascript" src="./Clima.js"></script>
+<script type="text/javascript" src="./Animacion.js"></script>
+<script type="text/javascript" src="./ServerStatus.js"></script>
