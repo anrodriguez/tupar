@@ -1,0 +1,223 @@
+/* 
+    Document   : Estilos - Transformaciones
+    Created on : 24-oct-2012, 14:14:22
+    Author     : Alberto N. Rodriguez <anrodriguez.click@gmail.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body {
+    height: 100%;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #D8D8D8), color-stop(100%, #FFFFFF));
+    background: -moz-linear-gradient(top, #FCF9F9 0%, #FC9999 100%);
+}
+
+.titulos { 
+   -webkit-transition: font-size 3s ease-in;
+    -moz-transition:font-size 3s ease-in;
+    font-size: small;
+}
+
+.titulos:hover { 
+   -webkit-transition: font-size 3s ease-in;
+    -moz-transition:font-size 3s ease-in;
+    font-size: 80px;
+}
+
+@-webkit-keyframes webkit-t1 {
+    from    {-webkit-transform: rotate(0deg); background-color: gray; }
+    to      {-webkit-transform: rotate(360deg); background-color: red;}
+}
+
+@-webkit-keyframes webkit-t2 {
+    from    {-webkit-transform: rotate(360deg); background-color: red; }
+    to      {-webkit-transform: rotate(0deg); background-color: gray;}
+}
+
+@-moz-keyframes moz-t1 {
+    from    {-moz-transform: rotate(0deg); background-color: gray; }
+    to      {-moz-transform: rotate(360deg); background-color: red;}
+}
+
+@-moz-keyframes moz-t2 {
+    from    {-moz-transform: rotate(360deg); background-color: red; }
+    to      {-moz-transform: rotate(0deg); background-color: gray;}
+}
+
+div.section1 {
+    float: left;
+    padding: 50px;
+    border-style: solid;
+    -webkit-border-radius: 10px;
+    -webkit-animation: webkit-t1 5s infinite;
+    
+    -moz-border-radius: 10px;
+    -moz-animation: moz-t1 5s infinite;
+}
+
+div.section2 {
+    float: left;
+    padding: 50px;
+    border-style: solid;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+div.section2:hover {
+    float: left;
+    padding: 50px;
+    border-style: solid;
+
+    -webkit-animation: webkit-t1 5s infinite;
+    
+    -moz-animation: moz-t1 5s infinite;
+}
+
+
+div.section3 {
+    float: left;
+    padding: 50px;
+    border-style: solid;
+
+    -webkit-transition:background-color 3s ease-in;
+    -moz-transition:background-color 3s ease-in;
+    background-color: red;
+
+    -webkit-transition:-webkit-transform 3s ease-in;
+    -webkit-transform: rotate(0deg);
+
+    -moz-transition:-moz-transform 3s ease-in;
+    -moz-transform: rotate(0deg);
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+
+}
+
+div.section3:hover {
+    float: left;
+    padding: 50px;
+    border-style: solid;
+
+    -webkit-transition:background-color 3s ease-in;
+    -moz-transition:background-color 3s ease-in;
+    background-color: blue;
+
+    -webkit-transition:-webkit-transform 3s ease-in;
+    -webkit-transform: rotate(90deg);
+
+    -moz-transition:-moz-transform 3s ease-in;
+    -moz-transform: rotate(90deg);
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+
+}
+
+div.section4 {
+    float: left;
+    padding: 50px;
+    border-style: solid;
+
+    -webkit-transition:background-color 3s ease-in;
+    -moz-transition:background-color 3s ease-in;
+    background-color: red;
+
+    -webkit-transition:-webkit-transform 3s ease-in;
+    -webkit-transform: translate(0px,0px);
+
+    -moz-transition:-moz-transform 3s ease-in;
+    -moz-transform: translate(0px,0px);
+    
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+
+}
+
+div.section4:hover {
+    float: left;
+    padding: 50px;
+    border-style: solid;
+
+    -webkit-transition:background-color 3s ease-in;
+    -moz-transition:background-color 3s ease-in;
+    background-color: blue;
+ 
+    -webkit-transition:-webkit-transform 3s ease-in;
+    -webkit-transform: translate(100px,100px);
+    
+    -moz-transition:-moz-transform 3s ease-in;
+    -moz-transform: translate(100px,100px);
+}
+
+div.section5 {
+    float: left;
+    padding: 50px;
+    border-style: solid;
+
+    -webkit-transition:background-color 3s ease-in;
+    -moz-transition:background-color 3s ease-in;
+    background-color: red;
+
+    -webkit-transition:-webkit-transform 3s ease-in;
+    -webkit-transform: scale(1, 1);
+
+    -moz-transition:-moz-transform 3s ease-in;
+    -moz-transform: scale(1, 1);
+    
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+
+}
+
+div.section5:hover {
+    float: left;
+    padding: 50px;
+    border-style: solid;
+
+    -webkit-transition:background-color 3s ease-in;
+    -moz-transition:background-color 3s ease-in;
+    background-color: blue;
+ 
+    -webkit-transition:-webkit-transform 3s ease-in;
+    -webkit-transform: scale(2,2);
+    
+    -moz-transition:-moz-transform 3s ease-in;
+    -moz-transform: scale(2,2);
+}
+
+div.section6 {
+    float: left;
+    padding: 50px;
+    border-style: solid;
+
+    -webkit-transition:background-color 3s ease-in;
+    -moz-transition:background-color 3s ease-in;
+    background-color: red;
+
+    -webkit-transition:-webkit-transform 3s ease-in;
+    -webkit-transform: skew(0deg, 0deg);
+
+    -moz-transition:-moz-transform 3s ease-in;
+    -moz-transform: skew(0deg, 0deg);
+    
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+
+}
+
+div.section6:hover {
+    float: left;
+    padding: 50px;
+    border-style: solid;
+
+    -webkit-transition:background-color 3s ease-in;
+    -moz-transition:background-color 3s ease-in;
+    background-color: blue;
+ 
+    -webkit-transition:-webkit-transform 3s ease-in;
+    -webkit-transform: skew(60deg, 60deg);
+    
+    -moz-transition:-moz-transform 3s ease-in;
+    -moz-transform: skew(60deg, 60deg);
+}

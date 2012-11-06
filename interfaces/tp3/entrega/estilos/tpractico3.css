@@ -1,0 +1,118 @@
+* {
+	margin: 0px
+}
+
+#contenedor  {
+	width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.cabecera {
+	min-width: 1024px;
+	min-height: 50px;
+    background-image: url("../imagenes/fondo.jpg");
+    border-bottom-style: solid;
+}
+.logo {
+	float: right;
+    width: 50px;
+    height: 50px;
+}
+
+.cabecera h1 {
+	font-family: monospace;
+	font-size: large;
+	color: red;
+	text-align: left;
+}
+
+.cabecera h2 {
+	font-size: x-small;
+	color: gray;
+	text-align: left;
+}
+
+.cabecera li {
+	display: inline;
+	padding: 1px 30px;
+	margin: 45px;
+	background-image: url("../imagenes/fondo.jpg");
+	color: blue;
+	cursor: pointer;
+}
+
+.menuhorizontal a {
+	font-style: italic;
+}
+
+.menuhorizontal a:visited {
+	text-decoration: underline overline;
+	color: black;
+}
+
+.contenido {
+	min-width: 1024px;
+	min-height: 500px;
+	background-image: url("../imagenes/pared.gif");
+}
+
+.panelizquierdo {
+	width: 200px;
+	min-height: 500px;
+	background-image: url("../imagenes/fondo.jpg");
+	border: 0px;
+	float: left;
+}
+
+.panelizquierdo h1 {
+	font-size: medium;
+	color: red;
+	text-align: center;
+}
+
+.panelizquierdo a {
+	color: navy;
+}
+
+.panelizquierdo a:visited {
+	text-decoration: underline overline;
+	color: black;
+}
+
+.panelizquierdo td {
+	color: olive;
+	cursor: pointer;
+}
+
+.panelderecho {
+    width: 200px;
+	min-height: 500px;
+	background-image: url("../imagenes/fondo.jpg");
+	float: right;
+}
+
+.panelderecho h1 {
+	font-size: medium;
+	color: green;
+	text-align: center;
+}
+
+.piepagina {
+	min-width: 1024px;
+	min-height: 20px;
+	background-color: activeborder;
+	clear: both;
+	font-style: italic;
+	font-size: small;
+	color: green;
+}
+
+.piepagina li {
+	display: inline;
+	padding: 1px 40px;
+	margin: 45px;
+	background-image: url("../imagenes/fondo.jpg");
+	color: blue;
+	cursor: pointer;
+}

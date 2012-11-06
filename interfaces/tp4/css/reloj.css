@@ -1,0 +1,76 @@
+/* 
+    Document   : Estilos - Transformaciones
+    Created on : 24-oct-2012, 14:14:22
+    Author     : Alberto N. Rodriguez <anrodriguez.click@gmail.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body {
+    height: 100%;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #D8D8D8), color-stop(100%, #FFFFFF));
+    background: -moz-linear-gradient(top, #FCF9F9 0%, #FC9999 100%);
+}
+
+div.reloj { 
+    float: left;
+    width: 600px;
+    height:600px;
+    border-style: solid;
+    background-image: url("../img/clockface.jpg");
+    background-position: center;
+}
+
+div.segundos { 
+    
+    width: 600px;
+    height:600px;
+    background-image: url("../img/sechand.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div.minutos { 
+    float: left;
+    width: 600px;
+    height:600px;
+    background-image: url("../img/minhand.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div.horas { 
+    float: left;
+    width: 600px;
+    height:600px;
+    background-image: url("../img/hourhand.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/*
+@-webkit-keyframes webkit-anim {
+    from    {-webkit-transform: rotate(0deg);}
+    to      {-webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes moz-anim {
+    from    {-moz-transform: rotate(0deg);}
+    to      {-moz-transform: rotate(360deg);}
+}
+
+div.segundos {
+    -webkit-animation: webkit-anim 60s linear infinite;
+    -moz-animation: moz-anim 60s linear infinite;
+}
+
+div.minutos {
+    -webkit-animation: webkit-anim 3600s linear infinite;
+    -moz-animation: moz-anim 3600s linear infinite;
+}
+
+div.horas {
+    -webkit-animation: webkit-anim 43200s linear infinite;
+    -moz-animation: moz-anim 43200s linear infinite;
+}
+*/

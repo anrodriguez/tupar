@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="./estilos/tp1.aplicacion" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="./estilos/tp1.aplicacion.css" type="text/css"/>
+        <script type="text/javascript" src="./P1_Ej5_aplicacion.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />    
+        <title>Tp1-Ej5. Visualizacion e interfaces</title>
+    </head>
+    <div class="container">
+        <div class="header">
+            <p>
+                TUPAR 2012 - Visualizaci&oacute;n e Interfaces <br>
+                Trabajo Pr&aacute;ctico 1 - Ejercicio 5 <br>
+                Alberto N. Rodr&iacute;guez
+            </p>
+        </div>
+
+        <div class="leftPanel">
+            <canvas class="canvasImg" id="canvasOriginal" title="Imagen original" onclick="eCopiarImagenOriginal()">
+                <p>Su navegador no soporta HTML5</p>
+            </canvas>
+        </div>
+
+        <div class="rightPanel">
+            <canvas class="canvasImg" id="canvasTrabajo" title="Area de trabajo">
+                <p>Su navegador no soporta HTML5</p>
+            </canvas>
+            <input type="text" id="filtroAplicado" disabled/>
+        </div>
+
+        <div class="controlPanel">
+            <h1>Factor de binarizaci&oacute;n</h1>
+            <input type="text" id="factorBin" title="Factor de binarizaci&oacute;n" name="factorBinarizacion" size="5" onchange="eBinarizacion()">
+            <h1>Ajuste brillo</h1>
+            <input type="text" id="factorBrillo" title="Factor de ajuste del brillo" name="factorBrillo" size="5">
+            <h1>Brillo actual</h1>
+            <input type="text" id="brilloActual" title="Valor de brillo aplicado" name="brilloActual" size="5" onchange="eBrillo()">
+        </div>
+        
+        <div class="histograma">
+            <canvas class="canvasHistograma" id="canvasHistograma" title="Histograma">
+                <p>Su navegador no soporta HTML5</p>
+            </canvas>
+        </div>
+       
+        <div class="functionPanel">
+            <canvas class="canvasBoton" id="canvasBotonAumentarBrillo" title="Aumentar brillo" onclick="eAumentarBrillo()">
+                <p>Su navegador no soporta HTML5</p>
+            </canvas>
+
+            <canvas class="canvasBoton" id="canvasBotonDisminuirBrillo" title="Disminuir brillo" onclick="eDisminuirBrillo()">
+                <p>Su navegador no soporta HTML5</p>
+            </canvas>
+
+            <canvas class="canvasBoton" id="canvasBotonNegativo" title="Aplicar filtro negativo" onclick="eNegativo()">
+                <p>Su navegador no soporta HTML5</p>
+            </canvas>
+
+            <canvas class="canvasBoton" id="canvasBotonBinarizacion" title="Aplicar filtro de binarizaci&oacute;n" onclick="eBinarizacion()">
+                <p>Su navegador no soporta HTML5</p>
+            </canvas>
+
+            <canvas class="canvasBoton" id="canvasBotonGrises" title="Convertir a escala de grises" onclick="eGrises()">
+                <p>Su navegador no soporta HTML5</p>
+            </canvas>
+
+            <canvas class="canvasBoton" id="canvasBotonSepia" title="Aplicar filtro de sepia" onclick="eSepia()">
+                <p>Su navegador no soporta HTML5</p>
+            </canvas>
+        </div>
+        <div>
+            Imagen: <input type="text" class="inputText" title="Nombre del archivo de imagen" id="imagenSrc" size="100" name="imagenInputText" 
+                           onchange="eCargarImagen()"
+                           value="./imagenes/canvas.jpg"/>
+
+            <input type="file" title="Cargar imagen desde archivo" id="examinarBoton" name="fileName" onchange="eExaminar()"> 
+            
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById("factorBin").value = 128;
+        document.getElementById("filtroAplicado").value = "Original";
+        document.getElementById("factorBrillo").value = 5;
+        document.getElementById("brilloActual").value = 0;
+        
+        var canvasOriginal = document.getElementById("canvasOriginal");
+        var ctxOriginal = canvasOriginal.getContext("2d");
+    
+        var canvasTrabajo = document.getElementById("canvasTrabajo");
+        var ctxTrabajo = canvasTrabajo.getContext("2d");
+    
+        var canvasHistograma = document.getElementById("canvasHistograma");
+        var ctxHistograma    = canvasHistograma.getContext("2d");
+        
+        var canvasBotonAumentarBrillo  = document.getElementById("canvasBotonAumentarBrillo");
+        var ctxBotonAumentarBrillo    = canvasBotonAumentarBrillo.getContext("2d");
+
+        var canvasBotonDisminuirBrillo  = document.getElementById("canvasBotonDisminuirBrillo");
+        var ctxBotonDisminuirBrillo     = canvasBotonDisminuirBrillo.getContext("2d");
+
+        var canvasBotonNegativo  = document.getElementById("canvasBotonNegativo");
+        var ctxBotonNegativo     = canvasBotonNegativo.getContext("2d");
+
+        var canvasBotonBinarizacion  = document.getElementById("canvasBotonBinarizacion");
+        var ctxBotonBinarizacion     = canvasBotonBinarizacion.getContext("2d");
+
+        var canvasBotonGrises   = document.getElementById("canvasBotonGrises");
+        var ctxBotonGrises      = canvasBotonGrises.getContext("2d");
+
+        var canvasBotonSepia  = document.getElementById("canvasBotonSepia");
+        var ctxBotonSepia     = canvasBotonSepia.getContext("2d");
+        
+        var src             = document.getElementById('imagenSrc');
+        var imagenOriginal  = new Image();
+        var imagenTrabajo   = new Image();
+        
+        imagenOriginal.src  = src.value;
+    
+        imagenOriginal.onload = function() {
+            ctxOriginal.drawImage(this, 0, 0, canvasOriginal.width, canvasOriginal.height);
+            ctxTrabajo.drawImage(this, 0, 0, canvasTrabajo.width, canvasTrabajo.height);
+
+            ctxBotonAumentarBrillo.drawImage(this, 0, 0, canvasBotonAumentarBrillo.width, canvasBotonAumentarBrillo.height);
+            imgData1 = brillo(getImagen(canvasOriginal, ctxOriginal), 100); 
+            ctxBotonAumentarBrillo.putImageData(imgData1, 0,0);    
+
+            ctxBotonDisminuirBrillo.drawImage(this, 0, 0, canvasBotonDisminuirBrillo.width, canvasBotonDisminuirBrillo.height);
+            imgData2 = brillo(getImagen(canvasOriginal, ctxOriginal), -100); 
+            ctxBotonDisminuirBrillo.putImageData(imgData2, 0,0);    
+
+            ctxBotonNegativo.drawImage(this, 0, 0, canvasBotonNegativo.width, canvasBotonNegativo.height);
+            imgData3 = negativo(getImagen(canvasOriginal, ctxOriginal)); 
+            ctxBotonNegativo.putImageData(imgData3, 0,0);    
+
+            ctxBotonBinarizacion.drawImage(this, 0, 0, canvasBotonBinarizacion.width, canvasBotonBinarizacion.height);
+            imgData4 = binarizacion(getImagen(canvasOriginal, ctxOriginal), 128); 
+            ctxBotonBinarizacion.putImageData(imgData4, 0,0);    
+
+            ctxBotonGrises.drawImage(this, 0, 0, canvasBotonGrises.width, canvasBotonGrises.height);
+            imgData5 = grises(getImagen(canvasOriginal, ctxOriginal), 128); 
+            ctxBotonGrises.putImageData(imgData5, 0,0);    
+
+            ctxBotonSepia.drawImage(this, 0, 0, canvasBotonSepia.width, canvasBotonSepia.height);
+            imgData6= sepia(getImagen(canvasOriginal, ctxOriginal), 128); 
+            ctxBotonSepia.putImageData(imgData6, 0,0);    
+
+            eHistograma();
+        }
+        
+        
+    </script>
