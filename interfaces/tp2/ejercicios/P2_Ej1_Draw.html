@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="tp2.estilo.css" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Trabajo Practico 2</title>
+</head>
+
+<body style="margin:0;padding:0;" onload="init();">
+<canvas id="canvas" class="leftPanel">
+<p>Su navegador no soporta HTML5</p>
+</canvas>
+
+<script type="text/javascript">  
+var canvas;
+var ctx;
+
+function init() {
+    canvas  = document.getElementById("canvas");
+    ctx     = canvas.getContext("2d");
+    figuras = new Figuras();
+    return setInterval(draw, 200);
+}
+//-------------------------------------------------------------
+
+
+function Box(x, y, w, h, f) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.fill = f;
+}
+
+Box.prototype.draw = function(ctx) {
+    ctx.beginPath();
+    ctx.fillStyle = this.fill;
+    ctx.fillRect(this.x, this.y, this.w, this.h);
+    ctx.closePath();
+}
+
+function Circle(x, y, r, f){
+    this.x      = x;
+    this.y      = y;
+    this.radio  = r;
+    this.fill   = f;
+}
+
+Circle.prototype.draw = function(ctx) {
+    ctx.beginPath();
+    ctx.fillStyle = this.fill;
+    ctx.arc(this.x, this.y, this.radio, 0, 2*Math.PI, true);
+    ctx.closePath();
+    ctx.fill();
+}
+
+function Figuras(){
+    this.shapes = [];
+}
+
+Figuras.prototype.agregar = function(figura) {
+    this.shapes.push(figura);
+}
+
+Figuras.prototype.draw = function(ctx) {
+    for (var i=0; i<this.shapes.length; i++) {
+        this.shapes[i].draw(ctx);
+    }
+}
+
+function clear() {
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, canvas.width, canvas.heigth);
+    
+}
+
+function rgb(r, g, b) {
+    var decColor = r+256*g+65536*b;
+    return '#'+decColor.toString(16);
+}  
+
+function patron(x, y, w, h) {
+    
+    var patron =0;
+    var type = repeat = Math.floor(Math.random()*4);
+    var c    = rgb(Math.round(Math.random()*255), Math.round(Math.random()*255), Math.round(Math.random()*255));
+    var c1    = rgb(Math.round(Math.random()*255), Math.round(Math.random()*255), Math.round(Math.random()*255));
+    
+    switch (type) {
+        case 0:
+            patron = c;
+            break;
+            
+        case 1:
+            patron=ctx.createLinearGradient(x, x, y, y);
+            patron.addColorStop(0, c);
+            patron.addColorStop(1, c1);
+            break;
+            
+        case 2:
+            patron=ctx.createRadialGradient(x, y, 20, x, y, 30);
+            patron.addColorStop(0, c);
+            patron.addColorStop(1, c1);
+            break;
+
+        case 3:
+            var img = new Image();
+            img.src='./canvas.jpg';
+            
+            switch(repeat) {
+                case 0: 
+                    patron=ctx.createPattern(img, "repeat-no");
+                    break;
+                case 1: 
+                    patron=ctx.createPattern(img, "repeat");
+                    break;
+                case 2: 
+                    patron=ctx.createPattern(img, "repeat-x");
+                    break;
+                case 3: 
+                    patron=ctx.createPattern(img, "repeat-y");
+                    break;
+        }
+            break;
+    }
+        
+    return patron;
+}
+
+function draw(){
+    clear();
+
+    figuras.draw(ctx);   
+
+    var x = Math.round(Math.random()*canvas.width);
+    var y = Math.round(Math.random()*canvas.height);
+    var w = Math.round(Math.random()*50);
+    var h = Math.round(Math.random()*50);
+    var r = Math.round(Math.random()*50);
+    var c = patron(x, y, w, h);
+    
+    if (Math.random()<=0.5)    
+        figuras.agregar(new Box(x, y, w, h, c));
+    else
+        figuras.agregar(new Circle(x, y, r, c));
+}
+
+</script>
+
+    

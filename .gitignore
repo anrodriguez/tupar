@@ -7,5 +7,12 @@
 *.jar
 *.war
 *.ear
+<<<<<<< HEAD
 >>>>>>> b2b44aea28b32ef3e3b8273f3bf89698b8cb2fb9
 /bolsaLaboral/nbproject/private/
+=======
+/nbproject/private/
+/build/
+/interfaces/nbproject/private/
+/interfaces/tp2/puzzle/nbproject/private/
+>>>>>>> e01b2cb85669a3a387c14bf3590c453628ab8eae

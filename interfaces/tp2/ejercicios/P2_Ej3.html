@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="tp2.estilo.css" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Trabajo Practico 2</title>
+</head>
+
+<body style="margin:0;padding:0;" onload="init();">
+<div class="containner">    
+    <canvas id="canvas" width="900" height="600" style="border:green solid 1px">
+    <p>Su navegador no soporta HTML5</p>
+    </canvas>
+</div>  
+
+<script type="text/javascript">  
+var canvas;
+var ctx;
+var box, x=10, y=10, w=100, h=100;
+
+var circle, x2=100, y2=100, r2=10;
+
+function init() {
+    canvas  = document.getElementById("canvas");
+    ctx     = canvas.getContext("2d");
+    
+    canvas.onmousedown  = mousedown;
+    canvas.onmouseup    = mouseup;
+    canvas.onmousemove  = mousemove;
+    
+    figuras = new Figuras();
+    var img = new Image();
+
+    var c   = rgb(Math.round(Math.random()*255), Math.round(Math.random()*255), Math.round(Math.random()*255));
+    var c2   = rgb(Math.round(Math.random()*255), Math.round(Math.random()*255), Math.round(Math.random()*255));
+    img.src = './canvas.jpg';
+    var c1  = ctx.createPattern(img, 'repeat');
+
+    figuras.agregar(new Box(x, y, w, h, c));
+    figuras.agregar(new Box(100, 100, 20, 20, c2));
+    figuras.agregar(new Circle(x2, y2, 10, c1));
+    
+    draw();
+    
+    return; 
+}
+//-------------------------------------------------------------
+
+
+function Box(x, y, w, h, f) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.fill = f;
+    
+    this.select = false;
+}
+
+Box.prototype.draw = function(ctx) {
+//    ctx.beginPath();
+//    ctx.fillStyle = this.fill;
+//    ctx.fillRect(this.x, this.y, this.w, this.h);
+//    ctx.closePath();
+//    ctx.stroke();    
+    if (this.isSelect())
+        ctx.fillStyle = "red";
+    else
+        ctx.fillStyle = this.fill;
+        
+    ctx.fillRect(this.x, this.y, this.w, this.h);
+    //    ctx.fill();
+}
+
+Box.prototype.clear = function() {
+    ctx.clearRect(this.x, this.y, this.w, this.h);
+}
+
+Box.prototype.moverA = function(x, y) {
+ 
+    this.clear();
+    this.x = x;
+    this.y = y;
+    this.draw(ctx);
+}
+
+Box.prototype.isSelect = function() {
+    return this.select;
+}
+
+Box.prototype.isInside = function(x, y) {    
+    if ((x>=this.x&&x<=this.x+this.w)&&(y>=this.y&&y<=this.y+this.h))
+        return true;
+    else
+        return false;
+}
+
+function Circle(x, y, r, f){
+    this.x      = x;
+    this.y      = y;
+    this.radio  = r;
+    this.fill   = f;
+
+    this.select = false;
+
+}
+
+Circle.prototype.clear = function() {
+}
+
+Circle.prototype.moverA = function(x, y) {
+    this.clear();
+    this.x = x;
+    this.y = y;
+    this.draw(ctx);
+}
+
+Circle.prototype.draw = function(ctx) {
+    ctx.beginPath();
+    ctx.fillStyle = this.fill;
+    ctx.arc(this.x, this.y, this.radio, 0, 2*Math.PI, true);
+    ctx.closePath();
+//    ctx.stroke();    
+    ctx.fill();
+}
+
+Circle.prototype.isSelect = function() {
+    return this.select;
+}
+
+Circle.prototype.isInside = function(x, y) {    
+    var distancia = Math.sqrt(Math.pow(x-this.x,2) + Math.pow(y-this.y,2));
+
+    if (distancia<=this.radio)
+        return true;
+    else
+        return false;
+}
+
+
+function Figuras(){
+    this.shapes = [];
+    this.actual = -1;
+}
+
+Figuras.prototype.agregar = function(figura) {
+    this.shapes.push(figura);
+}
+
+Figuras.prototype.draw = function(ctx) {
+    for (var i=0; i<this.shapes.length; i++) {
+        this.shapes[i].draw(ctx);
+    }
+}
+
+Figuras.prototype.isInside = function(x, y) {
+    
+    for (var i=0; i<this.shapes.length; i++) {
+        if (this.shapes[i].isInside(x, y)) {
+            this.shapes[i].select = true;   
+            this.actual = i;
+            }
+        else {
+            this.shapes[i].select = false;
+            }
+    }
+}
+
+Figuras.prototype.moverA = function(x, y) {
+    if (this.actual>=0&&this.actual<=this.shapes.length)
+        this.shapes[this.actual].moverA(x, y);
+}
+
+function clear() {
+    canvas.width = canvas.width;
+}
+
+function rgb(r, g, b) {
+    var decColor = r+256*g+65536*b;
+    return '#'+decColor.toString(16);
+}  
+
+function patron(x, y, w, h) {
+    
+    var patron =0;
+    var type = repeat = Math.floor(Math.random()*4);
+    var c    = rgb(Math.round(Math.random()*255), Math.round(Math.random()*255), Math.round(Math.random()*255));
+    var c1    = rgb(Math.round(Math.random()*255), Math.round(Math.random()*255), Math.round(Math.random()*255));
+    
+    switch (type) {
+        case 0:
+            patron = c;
+            break;
+            
+        case 1:
+            patron=ctx.createLinearGradient(x, x, y, y);
+            patron.addColorStop(0, c);
+            patron.addColorStop(1, c1);
+            break;
+            
+        case 2:
+            patron=ctx.createRadialGradient(x, y, 20, x, y, 30);
+            patron.addColorStop(0, c);
+            patron.addColorStop(1, c1);
+            break;
+
+        case 3:
+            var img = new Image();
+            img.src='./canvas.jpg';
+            
+            switch(repeat) {
+                case 0: 
+                    patron=ctx.createPattern(img, "repeat-no");
+                    break;
+                case 1: 
+                    patron=ctx.createPattern(img, "repeat");
+                    break;
+                case 2: 
+                    patron=ctx.createPattern(img, "repeat-x");
+                    break;
+                case 3: 
+                    patron=ctx.createPattern(img, "repeat-y");
+                    break;
+        }
+            break;
+    }
+        
+    return patron;
+}
+
+
+function mousedown(e) {
+    figuras.isInside(e.layerX, e.layerY);
+    draw();   
+}
+
+function mouseup(e) {
+    figuras.shapes[figuras.actual].select = false;
+    figuras.actual = -1;
+    draw();
+}
+
+function mousemove(e){
+    figuras.moverA(e.layerX, e.layerY);
+    draw();       
+}
+
+function draw(){
+    clear();
+    figuras.draw(ctx);   
+
+}
+
+</script>
+</body>
+</html>

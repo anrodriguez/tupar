@@ -1,0 +1,41 @@
+.container{
+    width: 1200px;
+    height: 600px;
+}
+
+.controles {
+    float: right; 
+}
+
+.controles h1 {
+    font-size: 10px;
+}
+
+.parametros {
+    float: right; 
+}
+
+.lista {
+    float: right; 
+}
+
+.origen {
+    width: 80px;
+    height: 60px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+}
+
+.canvasMod     {
+    float: right;
+    width: 160px;
+    height: 120px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+}
+
+.footer {
+    color: windowtext;
+    font-style: italic;
+    font-size: 8px;
+}
