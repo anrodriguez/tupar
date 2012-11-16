@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+     <link href="css/index.css" rel="stylesheet" type="text/css"/>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
+     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+     <title>Visualizaci&oacute;n e Interfaces - Api Call</title>
+        
+    <script type="text/javascript" src="./js/Ciudad.js"></script>
+    <script type="text/javascript" src="./js/Candidato.js"></script>
+    <script type="text/javascript" src="./js/Voto.js"></script>
+    <script type="text/javascript" src="./js/Lista.js"></script>
+    <script type="text/javascript" src="./js/Encuesta.js"></script>
+    <script type="text/javascript" src="./js/cargarDatos.js"></script>
+    <script type="text/javascript" src="./js/estilos.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>        
+</head>
+<body class="body" style="background: activeborder" onload="init()">
+    <center>
+        <div class="cabecera">
+            <p>Visualizaci&oacute;n e Interfaces - T.P.5 - Alberto N. Rodr&iacute;guez</p>
+        </div>
+
+        <div class="principal"> 
+            <div class="referencias">
+                <p>Referencias: </p>
+                <div class="inputCandidatoA" id="inputCandidatoA">
+                    <label id="labelCandidatoA">Candidato A</label> 
+                    <input id="nameCandidatoA" type="text" value="n/a"/>
+                    <select class="boton" id="colorCandidatoA" onchange="setColor('inputCandidatoA', this.value);setColor('nameCandidatoA', this.value)" title="Seleccionar un color" name="colorCandidatoA">
+                        <option value="red">Rojo</option>
+                        <option value="green">Verde</option>
+                        <option value="blue">Azul</option>
+                        <option value="orange">Naranja</option>
+                        <option value="yellow">Amarillo</option>
+                    </select>                    
+                </div><br>  </br>
+                <div class="inputCandidatoB" id="inputCandidatoB">
+                    <label id="labelCandidatoB">Candidato B</label> 
+                    <input id="nameCandidatoB" type="text" value="n/a"/>
+                     <select class="boton" id="colorCandidatoB" onchange="setColor('inputCandidatoB', this.value);setColor('nameCandidatoB', this.value)" title="Seleccionar un color" name="colorCandidatoB">
+                        <option value="green">Verde</option>
+                        <option value="red">Rojo</option>
+                        <option value="blue">Azul</option>
+                        <option value="orange">Naranja</option>
+                        <option value="yellow">Amarillo</option>
+                    </select>
+                </div>
+                <br></br>
+                <label id="labelEscala">Ajustar Radios</label> 
+                <input id="escala" title="Factor de ajuste que se aplica para variar el radio de los circulos" type="text" value="6000" onchange="validarEscala();"/>
+                <input id="botonCargarDatos" class="boton" type="button" value="Cargar Datos" onclick="cargarDatos(encuesta);"/>
+                <input id="botonCancelarCarga" class="boton" type="button" value="Cancelar Carga" onclick="cancelarCarga();"/>
+                <br></br>
+                <input class="boton" type="button" value="Restablecer" onclick="recargarPagina();"/>
+                <br></br>
+            </div>
+            <div id="gmapa" class="gmapa"></div>
+        </div>
+
+        <div>
+            <output id="list"></output>
+        </div>
+
+        <div>
+            <input id="ubicacion" size="80" type="text" onchange="setUbicacion()" value="Tandil, Buenos Aires, Argentina"/>
+            <input type="button" value="Buscar" onclick="setUbicacion()"/>
+            <input type="button" value="Indicar" onclick="setMarcarUbicacion()"/>
+        </div>
+    </center>
+</body>
+</html>
+

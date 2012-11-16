@@ -1,0 +1,14 @@
+Ciudad;            Provincia;    Candidato A: Perez, Juan;  Candidato B: Garcia, Carlos;
+Tandil;            Buenos Aires;     25000;    5000;
+Olavarria;         Buenos Aires;     18000;    8000;
+Balcarce;          Buenos Aires;     4000;     9000;
+Mar del Plata;     Buenos Aires;     120000;   70000;
+Bahia Blanca;      Buenos Aires;     105000;   62000;
+Lomas de Zamora;   Buenos Aires;     55000;    19000;
+Buenos Aires;      Buenos Aires;     950000;   650000;
+Cordoba;           Cordoba;          265000;   380000;
+Carlos Paz;        Cordoba;          12000;    15000;
+Rio Cuarto;        Cordoba;          71000;    28000;
+Santa Fe;          Santa Fe;         350000;   190000;
+Rosario;           Santa Fe;         220000;   460000;
+Rafaela;           Santa Fe;         43500;    39000

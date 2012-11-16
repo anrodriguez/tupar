@@ -16,8 +16,12 @@ function setSepia(){
     setClassName("sepia");
 }
 
-function setBrillo(){
-    setClassName("brillo");
+function setBrilloMas(){
+    setClassName("brillomas");
+}
+
+function setBrilloMenos(){
+    setClassName("brillomenos   ");
 }
 
 function setFlip(){
@@ -27,3 +31,4 @@ function setFlip(){
 function setClassName(cName) {
    document.getElementById("canvas").className=cName;    
 }
+

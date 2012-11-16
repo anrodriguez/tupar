@@ -1,0 +1,113 @@
+/* 
+    Document   : index
+    Created on : 10-nov-2012, 10:34:31
+    Author     : Alberto N. Rodriguez <anrodriguez.click@gmail.com>
+    Description:
+        Trabajo práctico 5 - Visualización e interfaces
+*/
+
+html { height: 100% 
+}
+  
+div.body {
+    height: 100%;
+}
+
+.cabecera {
+    font-size: 12px;
+}
+
+div.principal {
+    width: 1000px;
+    height: 500px;
+    margin: 15px;
+}
+
+div.gmapa {
+    width: 80%;
+    height: 100%;
+    margin: 10px;
+}
+
+div.referencias {
+    width: 20%;
+    float: right;
+    font-style: italic;
+    font-size: 14px;
+}
+
+div.referencias h1 {
+    color: red;
+    font-style: italic;
+    font-size: 12px;
+}
+
+div.referencias h2 {
+    color: green;
+    font-style: italic;
+    font-size: 12px;
+}
+
+div.referencias input {
+    font-style: italic;
+    font-size: 12px;
+    size: 80px;
+}
+
+div.list {
+    float: left;
+}
+
+div.inputCandidatoA {   
+    color: red;
+    font-style: italic;
+    font-size: 12px;
+}
+
+div.inputCandidatoB {
+    color: green;
+    font-style: italic;
+    font-size: 12px;
+}
+
+div.inputCandidatoA input {   
+    color: red;
+}
+
+div.inputCandidatoB input {
+    color: green;
+}
+
+.red {
+    color: red;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.green {
+    color: green;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.blue {
+    color: blue;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.orange {
+    color: orange;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.yellow {
+    color: yellow;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.boton {
+    width: 120px;
+}

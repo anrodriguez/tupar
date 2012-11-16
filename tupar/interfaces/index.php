@@ -16,10 +16,9 @@ echo '<hr>'
 <br>
 <a href="tp3">Trabajo Pr&aacute;ctico 3</a><br>
 <br>
-<<<<<<< HEAD:tupar/interfaces/index.php
 <a href="tp4">Trabajo Pr&aacute;ctico 4</a><br>
 <br>
-=======
->>>>>>> e01b2cb85669a3a387c14bf3590c453628ab8eae:interfaces/index.php
+<a href="tp5">Trabajo Pr&aacute;ctico 5</a><br>
+<br>
 <br>
 <a href="proyectos">Proyectos</a><br>

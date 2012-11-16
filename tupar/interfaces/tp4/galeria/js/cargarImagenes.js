@@ -9,9 +9,9 @@
         reader.onload = ( function(theFile) {
                                 return function(e) {
                                             var span = document.createElement('span');
-                                            span.innerHTML = ['<img class="img" src="', e.target.result,
-                                                            '" onmouseover="selectImagen(',"'",escape(theFile.name),"'",
-                                                            "",')" ',
+                                            span.innerHTML = ['<img src="', e.target.result,
+                                                              selectTransicion(),
+                                                              ' onclick="selectImagen(',"'",escape(theFile.name),"'","",')" ',
                                                             'id="',escape(theFile.name),
                                                             '" title="', escape(theFile.name), '"/>'].join('');
                                             document.getElementById('list').insertBefore(span, null);
@@ -25,9 +25,9 @@
 document.getElementById('archivo').addEventListener('change', handleFileSelect, false);
 
 function selectImagen(id) {
+    document.getElementById("list").className="img1";
     img.src         = document.getElementById(id).src;
     canvasPrincipal = img.src;
-//    cambiarTransicion();
   }
   
 function sleep(delay) {
@@ -35,13 +35,6 @@ function sleep(delay) {
     while (new Date().getTime() < start + delay);
 }  
 
-function cambiarTransicion(){
-
-    //var lastSheet = document.styleSheets[document.styleSheets.length-1];
-
-    var e = document.getElementById("img1");
-    e.style.webkitAnimationName = "webkit-t3";
-    e.style.webkitAnimationDuration = "60s";
-    e.style.webkitAnimationIterationCount = "infinite";
-    e.style.webkitAnimationTimingFunction = "linear";
+function selectTransicion(){
+    return('"class="img"');
 }
